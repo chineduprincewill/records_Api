@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2023 at 09:27 AM
+-- Generation Time: Oct 18, 2023 at 09:50 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.1.17
 
@@ -40,8 +40,8 @@ CREATE TABLE `donations` (
   `group` varchar(255) NOT NULL,
   `event` varchar(255) NOT NULL,
   `event_year` int(11) NOT NULL,
-  `donation` double(8,2) NOT NULL,
-  `redeemed` double(8,2) NOT NULL DEFAULT 0.00,
+  `donation` double(13,2) NOT NULL,
+  `redeemed` double(13,2) NOT NULL DEFAULT 0.00,
   `recorder` varchar(255) NOT NULL,
   `created_by` varchar(255) NOT NULL,
   `status` int(11) NOT NULL DEFAULT 1,
@@ -272,7 +272,7 @@ CREATE TABLE `personal_access_tokens` (
 CREATE TABLE `redemptions` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `donation_id` int(11) NOT NULL,
-  `amount` double(8,2) NOT NULL,
+  `amount` double(13,2) NOT NULL,
   `channel` varchar(255) NOT NULL,
   `received_by` varchar(255) NOT NULL,
   `received_on` datetime NOT NULL DEFAULT current_timestamp(),
@@ -336,7 +336,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `mobile`, `groupid`, `groupname`, `role`, `email`, `email_verified_at`, `password`, `created_by`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'chinedu.ijeomah', '0806448185', 0, 'System', 'admin', 'chinedu.ijeomah@yahoo.com', NULL, '$2y$10$TtnbZlDzZc5X0y56gMJWNuNjxi5KMe7LHmomUH3Lq337YtUiTlojG', '', 1, NULL, NULL, '2023-10-17 17:24:04'),
-(2, 'princewill', '08058654032', 1, 'Abuja', 'admin', 'ijeomahprincewill@gmail.com', NULL, '$2y$10$z5xEOAfMh4Tw3OFsGZuiZ.TI0BpsXeExWXnbmDPY0wU4Y1YBCaDIS', 'chinedu.ijeomah@yahoo.com', 1, NULL, '2023-10-17 16:14:29', '2023-10-17 16:14:29');
+(2, 'princewill', '08058654032', 1, 'Abuja', 'admin', 'ijeomahprincewill@gmail.com', NULL, '$2y$10$z5xEOAfMh4Tw3OFsGZuiZ.TI0BpsXeExWXnbmDPY0wU4Y1YBCaDIS', 'chinedu.ijeomah@yahoo.com', 1, NULL, '2023-10-17 16:14:29', '2023-10-17 16:14:29'),
+(3, 'Nonoo', '08012345678', 3, 'Central', 'admin', 'nonoo@livingchristmission.com', NULL, '$2y$10$AnOXZN0O/40KwFmMH9kl/.zvod2XGy4yksajABqiv2EWphd0WNEuK', 'chinedu.ijeomah@yahoo.com', 1, NULL, '2023-10-18 06:36:45', '2023-10-18 06:36:45');
 
 --
 -- Indexes for dumped tables
@@ -422,7 +423,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `donations`
 --
 ALTER TABLE `donations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `events`
@@ -464,7 +465,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `redemptions`
 --
 ALTER TABLE `redemptions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `subgroups`
@@ -476,7 +477,7 @@ ALTER TABLE `subgroups`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
