@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2023 at 10:58 PM
+-- Generation Time: Oct 18, 2023 at 09:27 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.1.17
 
@@ -54,7 +54,9 @@ CREATE TABLE `donations` (
 --
 
 INSERT INTO `donations` (`id`, `member_id`, `uid`, `fullname`, `mobile`, `email`, `gender`, `member_group`, `groupid`, `group`, `event`, `event_year`, `donation`, `redeemed`, `recorder`, `created_by`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, '8139247230', 'Temple Choir  ', '08044738495', 'chinedu.ijeomah@yahoo.com', 'group', 'Abuja', 1, 'Abuja', 'Mummy Onyinyeomachukwu Spiritual Birthday', 2023, 25000.00, 25000.00, 'princewill', 'ijeomahprincewill@gmail.com', 1, '2023-10-17 16:19:18', '2023-10-17 16:19:18');
+(1, 1, '8139247230', 'Temple Choir  ', '08044738495', 'chinedu.ijeomah@yahoo.com', 'group', 'Abuja', 1, 'Abuja', 'Mummy Onyinyeomachukwu Spiritual Birthday', 2023, 25000.00, 25000.00, 'princewill', 'ijeomahprincewill@gmail.com', 1, '2023-10-17 16:19:18', '2023-10-17 16:19:18'),
+(2, 18, '3648221748', 'Daughters of Daddy Hezekiah household  ', '08012345678', 'central@livingchristmission.org', 'group', 'Central', 0, 'System', 'Mummy Onyinyeomachukwu Spiritual Birthday', 2023, 500000.00, 470000.00, 'chinedu.ijeomah', 'chinedu.ijeomah@yahoo.com', 1, '2023-10-18 05:11:51', '2023-10-18 06:13:54'),
+(3, 43, '6704939489', 'Umu Youth Ihe Daddy na amasi  ', '08012345678', 'abujabranch@livingchristmission.org', 'group', 'Abuja', 1, 'Abuja', 'Mummy Onyinyeomachukwu Spiritual Birthday', 2023, 100000.00, 55000.00, 'Sister Onyenwe Ifediora', 'ijeomahprincewill@gmail.com', 1, '2023-10-18 06:24:49', '2023-10-18 06:25:28');
 
 -- --------------------------------------------------------
 
@@ -199,7 +201,9 @@ INSERT INTO `members` (`id`, `category`, `uid`, `lastname`, `firstname`, `othern
 (39, 'Group', '5073386801', 'Mothers Onitsha', NULL, NULL, 'Mothers Onitsha  ', '08012345678', 'onitshabranch@livingchrsitmission.org', 'group', 2, 'Onitsha', 'Group', 'chinedu.ijeomah@yahoo.com', 1, '2023-10-17 18:30:32', '2023-10-17 18:30:32'),
 (40, 'Group', '2486717590', 'Onitsha natives', NULL, NULL, 'Onitsha natives  ', '08012345678', 'central@livingchristmission.org', 'group', 3, 'Central', 'Group', 'chinedu.ijeomah@yahoo.com', 1, '2023-10-17 18:31:39', '2023-10-17 18:31:39'),
 (41, 'Group', '9930426190', 'Friends of beloved princesses Warri', NULL, NULL, 'Friends of beloved princesses Warri  ', '08012345678', 'central@livingchristmission.org', 'group', 7, 'Warri', 'Group', 'chinedu.ijeomah@yahoo.com', 1, '2023-10-17 18:32:35', '2023-10-17 18:33:37'),
-(42, 'Group', '2543932909', 'Nkwa group', NULL, NULL, 'Nkwa group  ', '08012345678', 'central@livingchristmission.org', 'group', 3, 'Central', 'Group', 'chinedu.ijeomah@yahoo.com', 1, '2023-10-17 18:34:42', '2023-10-17 18:34:42');
+(42, 'Group', '2543932909', 'Nkwa group', NULL, NULL, 'Nkwa group  ', '08012345678', 'central@livingchristmission.org', 'group', 3, 'Central', 'Group', 'chinedu.ijeomah@yahoo.com', 1, '2023-10-17 18:34:42', '2023-10-17 18:34:42'),
+(43, 'Group', '6704939489', 'Umu Youth Ihe Daddy na amasi', NULL, NULL, 'Umu Youth Ihe Daddy na amasi  ', '08012345678', 'abujabranch@livingchristmission.org', 'group', 1, 'Abuja', 'Group', 'ijeomahprincewill@gmail.com', 1, '2023-10-18 06:18:55', '2023-10-18 06:18:55'),
+(44, 'Individual', '6341377296', 'Ijeomah', 'Chinedu', 'Princewill', 'Ijeomah Chinedu Princewill', '08064481852', 'princewill2007@hotmail.com', 'male', 1, 'Abuja', 'Youths', 'ijeomahprincewill@gmail.com', 1, '2023-10-18 06:22:45', '2023-10-18 06:22:45');
 
 -- --------------------------------------------------------
 
@@ -271,6 +275,7 @@ CREATE TABLE `redemptions` (
   `amount` double(8,2) NOT NULL,
   `channel` varchar(255) NOT NULL,
   `received_by` varchar(255) NOT NULL,
+  `received_on` datetime NOT NULL DEFAULT current_timestamp(),
   `created_by` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -280,8 +285,11 @@ CREATE TABLE `redemptions` (
 -- Dumping data for table `redemptions`
 --
 
-INSERT INTO `redemptions` (`id`, `donation_id`, `amount`, `channel`, `received_by`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, 1, 25000.00, 'cash', 'princewill', 'princewill', '2023-10-17 16:19:18', '2023-10-17 16:19:18');
+INSERT INTO `redemptions` (`id`, `donation_id`, `amount`, `channel`, `received_by`, `received_on`, `created_by`, `created_at`, `updated_at`) VALUES
+(1, 1, 25000.00, 'cash', 'princewill', '2023-10-18 08:10:54', 'princewill', '2023-10-17 16:19:18', '2023-10-17 16:19:18'),
+(2, 2, 350000.00, 'transfer', 'chinedu.ijeomah', '2023-10-17 00:00:00', 'chinedu.ijeomah@yahoo.com', '2023-10-18 06:12:53', '2023-10-18 06:12:53'),
+(3, 2, 120000.00, 'cash', 'chinedu.ijeomah', '2023-10-18 00:00:00', 'chinedu.ijeomah@yahoo.com', '2023-10-18 06:13:54', '2023-10-18 06:13:54'),
+(4, 3, 55000.00, 'POS', 'princewill', '2023-10-17 00:00:00', 'ijeomahprincewill@gmail.com', '2023-10-18 06:25:28', '2023-10-18 06:25:28');
 
 -- --------------------------------------------------------
 
@@ -414,7 +422,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `donations`
 --
 ALTER TABLE `donations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `events`
@@ -438,7 +446,7 @@ ALTER TABLE `groups`
 -- AUTO_INCREMENT for table `members`
 --
 ALTER TABLE `members`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -456,7 +464,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `redemptions`
 --
 ALTER TABLE `redemptions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `subgroups`
