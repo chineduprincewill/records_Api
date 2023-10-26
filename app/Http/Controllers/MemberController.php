@@ -70,6 +70,38 @@ class MemberController extends Controller
     }
 
 
+    public function getMember (Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => 'required|integer'
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+
+        try {
+
+            $member = Member::find($request->id);
+
+        } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+            return response()->json(['token_expired'], $e->getStatusCode());
+
+        } catch (Tymon\JWTAuth\Exceptions\TokenInvalidExceptions $e) {
+
+            return response()->json(['token_invalid'], $e->getStatusCode());
+
+        } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+            return response()->json(['token_absent'], $e->getStatusCode());
+
+        }
+
+        return response()->json(compact('member'), 201);
+    }
+
+
     public function createMember (Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -114,6 +146,8 @@ class MemberController extends Controller
                 'branchid' => $request->get('branchid'),
                 'branch' => $branchname->title,
                 'wing' => $request->get('wing'),
+                'region' => $request->get('region'),
+                'subgroup' => $request->get('subgroup'),
                 'email' => $request->get('email'),
                 'created_by' => $email,
                 'status' => 1,
@@ -184,6 +218,8 @@ class MemberController extends Controller
             $member->branch = $branchname->title;
             $member->gender = $request->gender;
             $member->wing = $request->wing;
+            $member->region = $request->region;
+            $member->subgroup = $request->subgroup;
 
             $member->save();
 

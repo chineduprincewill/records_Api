@@ -15,6 +15,6 @@ class Member extends Model
      * @var array
      */
     protected $fillable = [
-        'category', 'uid', 'lastname', 'firstname', 'othernames', 'fullname', 'mobile', 'email', 'gender', 'branchid', 'branch', 'wing', 'email', 'created_by', 'status'
+        'category', 'uid', 'lastname', 'firstname', 'othernames', 'fullname', 'mobile', 'email', 'gender', 'branchid', 'branch', 'wing', 'region', 'subgroup', 'email', 'created_by', 'status'
     ];
 }

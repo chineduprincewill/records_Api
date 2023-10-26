@@ -27,6 +27,8 @@ class CreateMembersTable extends Migration
             $table->integer('branchid');
             $table->string('branch');
             $table->string('wing');
+            $table->string('region')->nullable();
+            $table->string('subgroup')->nullable();
             $table->string('created_by');
             $table->integer('status')->default(1);
             $table->timestamps();

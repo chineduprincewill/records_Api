@@ -59,6 +59,7 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     // MEMBER ROUTES
     Route::get('members', [MemberController::class, 'allMembers']);
     Route::get('get-members', [MemberController::class, 'getMembers']);
+    Route::post('get-member', [MemberController::class, 'getMember']);
     Route::post('create-member', [MemberController::class, 'createMember']);
     Route::post('update-member', [MemberController::class, 'updateMember']);
     Route::post('delete-member', [MemberController::class, 'deleteMember']);
@@ -77,6 +78,7 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::get('group-donations', [DonationController::class, 'groupDonations']);
     Route::post('create-donation', [DonationController::class, 'createDonation']);
     Route::post('filter-donations', [DonationController::class, 'filterDonations']);
+    Route::post('result', [DonationController::class, 'result']);
 
     // REDEMPTION ROUTES
     Route::post('donation-redemptions', [RedemptionController::class, 'donationRedemptions']);
